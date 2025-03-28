@@ -1,0 +1,10 @@
+html, body {
+    height: 100%;
+    margin: 0; 
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    padding: 0;
+}
+app-root {
+    display: block;
+    height: 100%;
+}

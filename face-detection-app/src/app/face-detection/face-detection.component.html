@@ -1,0 +1,53 @@
+
+  <div id="main">
+    <!-- ✅ Selfie Section -->
+    <div id="selfieSection" style="position: relative;">
+      <video id="camera" width="320" height="240" autoplay playsinline style="display: none;"></video>
+      <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+      <canvas #faceMeshCanvas width="320" height="240" 
+              style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>  
+  
+      <button id="startCameraBtn" (click)="startCamera()">Start Camera</button>
+      <button id="captureSelfieBtn" (click)="captureSelfie()" *ngIf="cameraStarted">Capture Selfie </button>
+      <!-- <button id="restartBtn" (click)="restartCamera()" >Restart Camera</button> -->
+      <button id="retakeSelfieBtn" (click)="retakeSelfie()" *ngIf="selfieCaptured">Retake Selfie</button> 
+              
+      <p id="selfieStatus"></p>
+    </div>
+  
+    <!-- Display Capture selfie --> 
+    <!-- <div *ngIf="selfieCaptured">
+     <p>Selfie Captured</p> 
+     <img [src]="imagePreviewSrc" alt="Captured Selfie" width="320" height="240"/>
+   </div> -->
+
+    <!-- ✅ Upload Section (Includes Captured Selfie in Image 1) -->
+    <div id="uploadSection" *ngIf="cameraStarted">
+      <div class="upload-box">
+        <div>Selfie Image</div>
+        <p class="fileName">{{fileName1}}</p>
+        <div class="image-container">
+          <img [src]="imagePreviewSrc" *ngIf="imagePreviewSrc">
+        </div>
+      </div>
+  
+      <!-- Manually upload Image-->
+      <div class="upload-box">
+        <div>Upload Image 2</div>
+        <input type="file" id="imageUpload2" accept="image/*" (change)="handleFileUpload2($event)">
+       <button class="btn" id="Btn2" (click)="triggerFileInput2()">Upload Image</button>
+        <p class="fileName" id="fileName2">{{fileName2 }}</p>
+        <div class="image-container">
+          <img [src]="previewImage2" *ngIf="previewImage2" alt="Image2"/>
+        </div>
+      </div>
+  
+      <!-- compare Images -->
+      <button class="btn" id="compareBtn" (click)="compareFaces()">Compare Faces</button>
+    </div>
+  
+    <div id="result"></div>
+  </div>
+  
+
+

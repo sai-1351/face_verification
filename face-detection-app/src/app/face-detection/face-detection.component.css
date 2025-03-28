@@ -1,0 +1,164 @@
+/* General Styling */ 
+
+/* html,body{
+  background: linear-gradient(135deg, #0f172a, #1e293b); 
+}  */
+
+:host {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    text-align: center;
+    padding: 50px;
+    color: #f5f7fb;
+  }
+  
+  /* Main Layout */
+  #main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Selfie Section */
+  #selfieSection {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  video {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  #captureSelfieBtn,
+  #startCameraBtn,#retakeSelfieBtn{
+    background: linear-gradient(90deg, #2563eb, #9333ea);
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  #captureSelfieBtn:hover,
+  #startCameraBtn:hover ,#retakeSelfieBtn{
+    background: linear-gradient(90deg, #9333ea, #2563eb);
+    transform: scale(1.05);
+  }
+  
+  #selfieStatus {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #facc15;
+  }
+  
+  /* Upload Section */
+  #uploadSection {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .upload-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    max-width: 350px;
+    margin: 20px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .upload-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  .upload-box div {
+    font-size: 18px;
+    font-weight: bold;
+    color: #facc15;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  input[type="file"] + .btn {
+    display: inline-block;
+  }
+  
+  .btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(90deg, #2563eb, #9333ea);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn:hover {
+    background: linear-gradient(90deg, #9333ea, #2563eb);
+    transform: scale(1.05);
+  }
+  
+  /* Image Container for Uploaded Images */
+  .image-container {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    border-radius: 10px;
+  }
+  
+  /* Compare Button */
+  #compareBtn {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+  }
+  
+  #compareBtn:hover {
+    background: linear-gradient(90deg, #16a34a, #22c55e);
+  }
+  
+  /* Result Section */
+  #result {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #facc15;
+  }
+  

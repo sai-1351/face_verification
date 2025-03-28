@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FaceDetectionApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ✅ Updated Content Security Policy (CSP) to allow scripts properly -->
+  <meta http-equiv="Content-Security-Policy"
+  content="default-src 'self' https://cdn.jsdelivr.net;
+           style-src 'self' 'unsafe-inline';
+           font-src 'self' data:;
+           script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net;
+           img-src 'self' blob: data:;
+           connect-src 'self' http://127.0.0.1:8000 https://cdn.jsdelivr.net;">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+
+  <!-- ✅ Angular App Root (DO NOT include Angular components here) -->
+  <app-root></app-root>
+
+  <!-- ✅ Load Mediapipe Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" async defer></script>
+
+</body>
+</html>
