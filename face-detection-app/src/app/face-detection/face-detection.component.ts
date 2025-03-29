@@ -3,6 +3,7 @@ import { Camera } from '@mediapipe/camera_utils';
 import { FaceMesh } from '@mediapipe/face_mesh';
 import { isPlatformBrowser } from '@angular/common';
 import {CommonModule} from '@angular/common'
+import { start } from 'node:repl';
 
 @Component({
   selector: 'app-face-detection',
@@ -84,7 +85,7 @@ export class FaceDetectionComponent implements AfterViewInit
   }
   
   
-
+// stop Camera
   stopCamera() {
     if (this.mediaStream) {
       this.mediaStream.getTracks().forEach(track => track.stop());
@@ -105,7 +106,6 @@ export class FaceDetectionComponent implements AfterViewInit
 
    // Capture Selfie
    captureSelfie() { 
-
     if (!this.isBrowser || !this.cameraStarted) return;
 
     if (!this.videoElement) {
@@ -156,11 +156,15 @@ export class FaceDetectionComponent implements AfterViewInit
       
        // ✅ Hide video and canvas after capturing
        videoElement.style.display = "none";
-       canvas.style.display       = "none"; 
+       canvas.style.display       = "none";  
+       document.getElementById('startCameraBtn')!.style.display ="none";
+       document.getElementById('captureSelfieBtn')!.style.display="none";
 
-      // this.stopCamera();  // ✅ Stop camera completely 
- 
-       console.log("Selfie captured and camera hidden.");
+       //show retake selfie button
+       document.getElementById('retakeSelfieBtn')!.style.display="block";
+
+       console.log("Selfie captured and Retake selfie enabled");
+       // stop camera 
        
       }  
     }, 'image/jpeg');
@@ -169,14 +173,30 @@ export class FaceDetectionComponent implements AfterViewInit
 
   retakeSelfie() { 
 
+    console .log("Retaking Selfie");
+
+    this.imagePreviewSrc = null; // Clear the captured image 
+    this.selfieCaptured = false; // Allow new image
+    // this.cameraStarted  = false;
+
     const videoElement: HTMLVideoElement = <HTMLVideoElement>document.getElementById('camera');
     const canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('canvas');
 
-    this.imagePreviewSrc = null; // Clear the captured image
-    this.selfieCaptured = false; // Show the camera again
+    // Hide and start camera adn capture selfie
+    document.getElementById('startCameraBtn')!.style.display ="none";
+    document.getElementById('captureSelfieBtn')!.style.display="none";
 
+    // Ensure video and canvas are visible
     videoElement.style.display = "block";
-    canvas.style.display       = "block"; 
+    canvas.style.display       = "block";  
+
+    this.startCamera(); // Restart camera 
+    // this.captureSelfie() ;  
+
+    // capture selfie after restarting
+    setTimeout(()=>{
+      this.captureSelfie(); //Autocaptureselfie
+    },1000) //ading slight delay , to allow the camera to reinintailize
 
   }
 

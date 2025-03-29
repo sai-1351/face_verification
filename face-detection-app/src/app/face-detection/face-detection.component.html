@@ -7,10 +7,10 @@
       <canvas #faceMeshCanvas width="320" height="240" 
               style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>  
   
-      <button id="startCameraBtn" (click)="startCamera()">Start Camera</button>
+      <button id="startCameraBtn" (click)="startCamera()" >Start Camera</button>
       <button id="captureSelfieBtn" (click)="captureSelfie()" *ngIf="cameraStarted">Capture Selfie </button>
       <!-- <button id="restartBtn" (click)="restartCamera()" >Restart Camera</button> -->
-      <button id="retakeSelfieBtn" (click)="retakeSelfie()" *ngIf="selfieCaptured">Retake Selfie</button> 
+      <button id="retakeSelfieBtn" (click)="retakeSelfie()" style="display:none;">Retake Selfie</button> 
               
       <p id="selfieStatus"></p>
     </div>
