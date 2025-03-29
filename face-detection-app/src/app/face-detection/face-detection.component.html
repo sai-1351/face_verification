@@ -41,10 +41,11 @@
           <img [src]="previewImage2" *ngIf="previewImage2" alt="Image2"/>
         </div>
       </div>
-  
-      <!-- compare Images -->
-      <button class="btn" id="compareBtn" (click)="compareFaces()">Compare Faces</button>
-    </div>
+    </div> 
+
+    <!-- compare Images -->
+    <button class="btn" id="compareBtn" (click)="compareFaces()" *ngIf="cameraStarted" >Compare Faces</button>
+    <!-- <button class="btn" id="compareBtn" (click)="compareFaces()"  >Compare Faces</button>  -->  <!--toogle on-->
   
     <div id="result"></div>
   </div>

@@ -69,9 +69,10 @@
   
   /* Upload Section */
   #uploadSection {
-    display: block;
+    display:flex;/* display: block; */
     margin-top: 20px;
-    text-align: center;
+    text-align: center; 
+    gap:10%;
   }
   
   .upload-box {
