@@ -377,21 +377,22 @@ export class FaceDetectionComponent implements AfterViewInit
     }
 
     let formData = new FormData();
-    formData.append("image1", this.selfieBlob);  // Selfie as a Blob
+    formData.append("image1", this.selfieBlob);      // Selfie as a Blob
     formData.append("image2", this.image2Uploaded);  // Image 2 uploaded as File
 
     fetch("http://127.0.0.1:8000/compare_faces", {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json())
-      .then((data) => {
-        document.getElementById('result')!.textContent = `Face Match: ${data.match}`;
-      })
-      .catch((error) => {
-        console.error("Error comparing faces:", error);
-        document.getElementById('result')!.textContent = "⚠️ Failed to compare faces.";
-      });
+    .then((response) => response.json())
+    .then((data) => {
+      const resultText = `Face Match: ${data.match}`;
+      document.getElementById('result')!.textContent = resultText;
+      console.log("API Response",data); // Logs the full response in the console
+    })
+    .catch((error) => {
+      console.error("Error comparing faces:", error);
+      document.getElementById('result')!.textContent = "⚠️ Failed to compare faces.";
+    }); 
   }
- 
 }
