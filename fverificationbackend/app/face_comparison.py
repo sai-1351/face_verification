@@ -2,6 +2,7 @@
 
 import os
 import cv2
+import time
 import numpy as np
 import tempfile
 from fastapi import APIRouter, UploadFile, File
@@ -13,7 +14,7 @@ router = APIRouter()
 @router.post("/compare_faces/")
 async def compare_faces(image1: UploadFile = File(...), image2: UploadFile = File(...)):
     """Compare two face images and return a similarity score."""
-    
+    start_time = time.time()
     # Save uploaded images
     temp1_path = save_uploaded_file(image1)
     temp2_path = save_uploaded_file(image2)
@@ -39,11 +40,15 @@ async def compare_faces(image1: UploadFile = File(...), image2: UploadFile = Fil
 
     # Compute cosine similarity
     similarity = cosine_similarity([embedding1], [embedding2])[0][0]
-
+     
     # Set a better threshold for match
     match = similarity > 0.30
+    end_time = time.time() 
+
+    processing_time = end_time - start_time
 
     return {
         "match": "YES ✅" if match else "NO ❌",
-        "similarity_score": round(float(similarity), 3),
+        "similarity_score":f"{round((similarity)*100, 2)}%",
+        "Processing time":f"{round(processing_time,2)}seconds"
     }
