@@ -376,11 +376,11 @@ export class FaceDetectionComponent implements AfterViewInit
       return;
     }
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("image1", this.selfieBlob);      // Selfie as a Blob
     formData.append("image2", this.image2Uploaded);  // Image 2 uploaded as File
 
-    fetch("http://127.0.0.1:8000/compare_faces", {
+    fetch("http://127.0.0.1:8000/compare_faces/", {
       method: "POST",
       body: formData,
     })
