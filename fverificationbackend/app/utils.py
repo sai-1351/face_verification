@@ -1,11 +1,15 @@
 # app/utils.py
 
 import os
-import tempfile
-import cv2
+import cv2      #opencv
+import tempfile #builtin
 import numpy as np
 import insightface
 from insightface.app import FaceAnalysis
+
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 
 # Initialize RetinaFace + ArcFace (on CPU)
 face_analyzer = FaceAnalysis(name="buffalo_l", providers=["CPUExecutionProvider"])
@@ -16,8 +20,10 @@ def save_uploaded_file(uploaded_file):
     try:
         temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
         temp_file.write(uploaded_file.file.read())
-        temp_file.flush()  # Ensure data is written
+        temp_file.flush()  # Ensure data is written to disk
         temp_file.close()
+
+        print(f"[INFO] File saved successfully: {temp_file.name}")
         return temp_file.name  # Return the file path
     except Exception as e:
         print(f"[ERROR] Failed to save uploaded file: {str(e)}")
@@ -42,7 +48,7 @@ def extract_face_embedding(image_path):
             return None, f"Multiple faces detected ({num_faces}). Only one face is allowed."
 
         face = max(faces, key=lambda x: x.bbox[2] - x.bbox[0])  # Pick the largest face
-        embedding = face.normed_embedding
+        embedding = face.normed_embedding  # 512-dimensional vector (for ArcFace)
 
         if embedding is None or len(embedding) == 0:
             return None, "Failed to extract face embedding."
